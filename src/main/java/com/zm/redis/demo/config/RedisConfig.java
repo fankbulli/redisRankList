@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2020. Shanghai TongYan Civil Engineering Technology Corp., Ltd. All rights reserved.
- */
 package com.zm.redis.demo.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;

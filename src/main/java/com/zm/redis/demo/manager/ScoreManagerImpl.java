@@ -35,8 +35,9 @@ public class ScoreManagerImpl implements ScoreManager {
     @Override
     public boolean addScore(ScoreDto dto) {
         boolean flag = false;
-        User user = (User) dto.getUser();
-        if (null == userMapper.findById(user.getId()).get()) {
+        User user = userMapper.findById(dto.getUser().getId()).get();
+        if (null == user) {
+            user = dto.getUser();
             userMapper.save(user);
         }
         //获取年榜 key
@@ -172,7 +173,7 @@ public class ScoreManagerImpl implements ScoreManager {
         String m = String.valueOf(cal.get(Calendar.MINUTE));
         String s = String.valueOf(cal.get(Calendar.SECOND));
         String ms = String.valueOf(cal.get(Calendar.MILLISECOND));
-        StringBuilder builder = new StringBuilder("");
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < 3 - d.length(); i++) {
             builder.append("0");
         }
