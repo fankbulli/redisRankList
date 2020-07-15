@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:log4jdbc:mysql://localhost:3306/redis?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: 123456
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    tomcat:
+      max-active: 100
+      max-idle: 200
+      initial-size: 20
+    type: com.zaxxer.hikari.HikariDataSource
+    initialization-mode: never
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database: mysql
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        hbm2ddl:
+          import_files: data.sql
+  cache:
+    type: redis
+  redis:
+    database: 0
+    jedis:
+      pool:
+        max-active: 3000
+        max-wait:  5000
+        max-idle: 0
+    host: 192.168.15.128
+    port: 6379
+    timeout: 7200
+
+
